@@ -4,12 +4,14 @@
   </head>
   <body>
     <button id="button">click</button>
+    <div class="counter">0</div>
   </body>
   <script>
   // template: https://www.bing.com/spotlight?spotlightId=BiarritzFrance&q=0&carindexpill=0&carindeximg=0
   
-  // Abre aleatoriamente 35, deve permitir popups
-  var N = 35;
+  // Contador de aberturas deve permitir popups
+  var counter = document.getElementById("counter")
+  var N = 0;
   
   // Delay para fechar aba
   var delay = 5000;
@@ -32,7 +34,9 @@
             wind.close();
             console.log("fechando aba", N);
           }, delay)
-      N--;
+      N++;
+    // Update counter
+    counter.textContent = N
   }
 
   // Add event listenner to button

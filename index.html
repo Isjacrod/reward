@@ -28,7 +28,7 @@
       console.log("abrindo aba", N, " ", template);
       let wind = window.open(template, "_blank");
           // auto close
-          setTimeoout(() => {
+          setTimeout(() => {
             wind.close();
             console.log("fechando aba", N);
           }, delay)

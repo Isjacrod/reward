@@ -28,10 +28,10 @@
       console.log("abrindo aba", N, " ", template);
       let wind = window.open(template, "_blank");
           // auto close
-          window.setTimeout(() => {
+          wind.addEventlistener('load', () => {
             wind.close();
             console.log("fechando aba", N);
-          }, delay)
+          }
       N++;
     // Update counter
     counter.textContent = N

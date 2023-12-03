@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Reward</title>
+  </head>
+  <body>
+    <button id="button">click</button>
+  </body>
+  <script>
+  // template: https://www.bing.com/spotlight?spotlightId=BiarritzFrance&q=0&carindexpill=0&carindeximg=0
+  
+  // Abre aleatoriamente 35, deve permitir popups
+  var N = 35;
+  
+  // Delay para fechar aba
+  var delay = 5000;
+  
+  // Variacoes do spotlight id
+  locations = ["BiarritzFrance", "BaffinIslandCanada", "ChristliegerGermany", "KhaoSamRoiYotThailand", "CoyoteButtesSouthArizona", "ForthBridgeScotland", "LakeAlbertUganda", "LingmoorFellEngland", "NdzwaniComoros"]
+  
+  function abre1Aba() {
+      if (N == 0)
+          return;
+      let L = parseInt((Math.random() * locations.length));
+      let pill = parseInt(Math.random() * 15);
+      let index = parseInt(Math.random() * 10);
+      let template = `https://www.bing.com/spotlight?spotlightId=${locations[L]}&q=${locations[L]}${pill}${index}&carindexpill=${pill}&carindeximg=${index}&form=SLVOPI`
+       //`https://www.bing.com/search?pglt=43&PC=U523&q=${locations[L]}${N}${pill}${index}&FORM=ANNTA1`;
+      console.log("abrindo aba", N, " ", template);
+      let wind = window.open(template, "_blank");
+          // auto open
+          // wind.addEventListener("beforeunload", abre1Aba);
+          wind.addEventListener("load", () => setTimeout(() => {
+              wind.close();
+              console.log("fechando aba", N)}, delay));
+      N--;
+  }
+
+  // Add event listenner to button
+  var botao = document.getElementById("button")
+    botao.addEventListener("click", abre1Aba)
+  </script>
+</html>

@@ -27,11 +27,11 @@
        //`https://www.bing.com/search?pglt=43&PC=U523&q=${locations[L]}${N}${pill}${index}&FORM=ANNTA1`;
       console.log("abrindo aba", N, " ", template);
       let wind = window.open(template, "_blank");
-          // auto open
-          // wind.addEventListener("beforeunload", abre1Aba);
-          wind.addEventListener("load", () => setTimeout(() => {
-              wind.close();
-              console.log("fechando aba", N)}, delay));
+          // auto close
+          window.setTimeout(() => {
+            wind.close();
+            console.log("fechando aba", N)}, delay));
+          }, delay)
       N--;
   }
 

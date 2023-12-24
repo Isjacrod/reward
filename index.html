@@ -21,30 +21,31 @@
   locations = ["BiarritzFrance", "BaffinIslandCanada", "ChristliegerGermany", "KhaoSamRoiYotThailand", "CoyoteButtesSouthArizona", "ForthBridgeScotland", "LakeAlbertUganda", "LingmoorFellEngland", "NdzwaniComoros"]
   
   function abreAbas(N, Q) {
+    console.log(N, Q)
       let L = parseInt((Math.random() * locations.length));
       let pill = parseInt(Math.random() * 15);
       let index = parseInt(Math.random() * 10);
       let template = `https://www.bing.com/spotlight?spotlightId=${locations[L]}&q=${locations[L]}${pill}${index}&carindexpill=${pill}&carindeximg=${index}&form=SLVOPI`
        //`https://www.bing.com/search?pglt=43&PC=U523&q=${locations[L]}${N}${pill}${index}&FORM=ANNTA1`;
-      console.log("abrindo aba", N, " ", template);
-      if (N < Q) {
-        let wind = window.open(template, "_blank");
+       if (N <= Q) {
+         console.log("abrindo aba", N, " ", template);
+         let wind = window.open(template, "_blank");
+         N++;
+          // Update counter
+          counter.textContent = N
             // auto close
             setTimeout(() => {
-              N++;
-              // Update counter
-              counter.textContent = N
               wind.close();
               console.log("fechando aba", N);
               // Try open new tab
-              abreAbas(N, Q)
+              abreAbas(N, Q);
             }, delay)
-      }
+        }
   }
     
   // Add event listenner to button
   var botao = document.getElementById("button")
-  var qtd = document.getElementById("qtd")
-  botao.addEventListener("click", () => abreAbas(1, qtd))
+  qtd = document.getElementById("qtd")
+  botao.addEventListener("click", () => abreAbas(1, qtd.value))
   </script>
 </html>

@@ -12,7 +12,7 @@
   
   // Contador de aberturas deve permitir popups
   var counter = document.getElementById("counter")
-  var N = 0;
+  var T = 1;
   
   // Delay para fechar aba
   var delay = 7000;
@@ -20,25 +20,25 @@
   // Variacoes do spotlight id
   locations = ["BiarritzFrance", "BaffinIslandCanada", "ChristliegerGermany", "KhaoSamRoiYotThailand", "CoyoteButtesSouthArizona", "ForthBridgeScotland", "LakeAlbertUganda", "LingmoorFellEngland", "NdzwaniComoros"]
   
-  function abreAbas(N, Q) {
-    console.log(N, Q)
+  function abreAbas(N) {
       let L = parseInt((Math.random() * locations.length));
       let pill = parseInt(Math.random() * 15);
       let index = parseInt(Math.random() * 10);
       let template = `https://www.bing.com/spotlight?spotlightId=${locations[L]}&q=${locations[L]}${pill}${index}&carindexpill=${pill}&carindeximg=${index}&form=SLVOPI`
        //`https://www.bing.com/search?pglt=43&PC=U523&q=${locations[L]}${N}${pill}${index}&FORM=ANNTA1`;
-       if (N <= Q) {
-         console.log("abrindo aba", N, " ", template);
+       if (N > 0) {
+         console.log("abrindo aba", T, " ", template);
          let wind = window.open(template, "_blank");
-         N++;
+         N--;
           // Update counter
-          counter.textContent = N
+          T++;
+          counter.textContent = T;
             // auto close
             setTimeout(() => {
               wind.close();
-              console.log("fechando aba", N);
-              // Try open new tab
-              abreAbas(N, Q);
+              console.log("fechando aba", T);
+              // Try open new tab with 1 sec delay
+              setTimeout(() => abreAbas(N), 1000);
             }, delay)
         }
   }
@@ -46,6 +46,6 @@
   // Add event listenner to button
   var botao = document.getElementById("button")
   qtd = document.getElementById("qtd")
-  botao.addEventListener("click", () => abreAbas(1, qtd.value))
+  botao.addEventListener("click", () => abreAbas(qtd.value))
   </script>
 </html>
